@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Hosting;
 using APM.WebApi.Models;
+using APM.WebApi.Models.Interfaces;
 using Newtonsoft.Json;
 
 namespace APM.WebAPI.Models
@@ -12,13 +13,13 @@ namespace APM.WebAPI.Models
     /// Stores the data in a json file so that no database is required for this
     /// sample application
     /// </summary>
-    public class ProductRepository
-    {
+    public class ProductRepository : IProductRepository
+	{
         /// <summary>
         /// Creates a new product with default values
         /// </summary>
         /// <returns></returns>
-        internal Product Create()
+        public Product Create()
         {
             Product product = new Product
             {
@@ -27,11 +28,11 @@ namespace APM.WebAPI.Models
             return product;
         }
 
-        /// <summary>
-        /// Retrieves the list of products.
-        /// </summary>
-        /// <returns></returns>
-        internal List<Product> Retrieve()
+		/// <summary>
+		/// Retrieves the list of products.
+		/// </summary>
+		/// <returns></returns>
+		public List<Product> Retrieve()
         {
             var filePath = HostingEnvironment.MapPath(@"~/App_Data/product.json");
 
@@ -42,12 +43,12 @@ namespace APM.WebAPI.Models
             return products;
         }
 
-        /// <summary>
-        /// Saves a new product.
-        /// </summary>
-        /// <param name="product"></param>
-        /// <returns></returns>
-        internal Product Save(Product product)
+		/// <summary>
+		/// Saves a new product.
+		/// </summary>
+		/// <param name="product"></param>
+		/// <returns></returns>
+		public Product Save(Product product)
         {
             // Read in the existing products
             var products = Retrieve();
@@ -61,13 +62,13 @@ namespace APM.WebAPI.Models
             return product;
         }
 
-        /// <summary>
-        /// Updates an existing product
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="product"></param>
-        /// <returns></returns>
-        internal Product Save(int id, Product product)
+		/// <summary>
+		/// Updates an existing product
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="product"></param>
+		/// <returns></returns>
+		public Product Save(int id, Product product)
         {
             // Read in the existing products
             var products = Retrieve();

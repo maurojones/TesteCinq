@@ -42,7 +42,7 @@
     <div class="container">
         <div ng-if="vm.isLoggedIn"
              ng-include="'app/products/productEditView.html'"></div>
-        <!--div ng-include="'app/products/productListView.html'"></div-->
+        <div ng-if="vm.isLoggedIn" ng-include="'app/products/productListView.html'"></div>
     </div>
 
     <!-- Library Scripts -->

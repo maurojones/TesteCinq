@@ -1,5 +1,10 @@
 ﻿using System.Web.Http;
+using APM.WebApi.App_Start;
+using APM.WebApi.Models.Interfaces;
+using APM.WebAPI.Models;
 using Newtonsoft.Json.Serialization;
+using Unity;
+using Unity.Lifetime;
 
 namespace APM.WebApi
 {
@@ -24,6 +29,10 @@ namespace APM.WebApi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-        }
+
+			var container = new UnityContainer();
+			container.RegisterType<IProductRepository, ProductRepository>(new HierarchicalLifetimeManager());
+			config.DependencyResolver = new UnityResolver(container);
+		}
     }
 }

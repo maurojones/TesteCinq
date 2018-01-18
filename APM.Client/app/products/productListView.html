@@ -9,20 +9,22 @@
         <table class="table">
 
             <thead>
-                <tr>
-                    <td>Product</td>
-                    <td>Code</td>
-                    <td>Available</td>
-                    <td>Price</td>
-                </tr>
+				<tr>
+					<td>Product</td>
+					<td>Code</td>
+					<td>Available</td>
+					<td>Price US</td>
+					<td>Price EUR</td>
+				</tr>
             </thead>
             <tbody>
-                <tr ng-repeat="product in vm.products">
-                    <td>{{ product.productName}}</td>
-                    <td>{{ product.productCode }}</td>
-                    <td>{{ product.releaseDate | date }}</td>
-                    <td>{{ product.price | currency }}</td>
-                </tr>
+				<tr ng-repeat="product in vm.products">
+					<td>{{ product.productName}}</td>
+					<td>{{ product.productCode }}</td>
+					<td>{{ product.releaseDate | date }}</td>
+					<td>{{ product.priceUS | currency:'US$ ' }}</td>
+					<td>{{ product.priceEUR | currency:'EUR$ ' }}</td>
+				</tr>
             </tbody>
         </table>
     </div>
